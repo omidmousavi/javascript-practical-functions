@@ -134,7 +134,7 @@ function sort_table(table_id, c)
  */
 function xss_filter(value) 
 {
-    var lt = /</g,
+    let lt = /</g,
         gt = />/g,
         ap = /'/g,
         ic = /"/g;
@@ -154,7 +154,7 @@ function separate(Number)
     x = Number.split('.');
     y = x[0];
     z = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
+    let rgx = /(\d+)(\d{3})/;
     while (rgx.test(y))
         y = y.replace(rgx, '$1' + ',' + '$2');
     return y + z;
@@ -166,7 +166,7 @@ function separate(Number)
  */
 function validate_email(email)
 {
-    var mail_format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let mail_format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return email.match(mail_format);
 }
 
