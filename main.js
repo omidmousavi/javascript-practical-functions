@@ -43,18 +43,21 @@ function diff_time(hour1, minutes1, hour2, minutes2)
 }
 
 /**
- * 
- * @param {dictionary} setting = is_numeric:true, max_num:10, min_num:2, isset:true
+ * Validate input value
+ * @param {dictionary} setting = is_numeric, max_num, min_num, isset, is_email, max_str_len, min_str_len
  * @param {string|number} value 
  * @returns if value is ok return true else return false
  */
-function check_value(setting, value) 
+function validate_value(setting, value)
 {
     // setting = {
     //     'is_numeric':'true',
     //     'max_num':10,
     //     'min_num':2,
-    //     'isset':'true'
+    //     'isset':true
+    //     'is_email':true
+    //     'max_str_len':20
+    //     'min_str_len':10     
     // };
 
     if (setting.hasOwnProperty('is_numeric')) {
@@ -75,6 +78,20 @@ function check_value(setting, value)
         } else if (value.trim() == '' || String(value).length == 0) {
             return false;
         }
+    }
+    if (setting.hasOwnProperty('is_email')) {
+        let mail_format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!value.match(mail_format)) {
+            return false;
+        }
+    }
+    if (setting.hasOwnProperty('max_str_len')) {
+        if (String(value).length > setting.max_str_len)
+            return false;
+    }
+    if (setting.hasOwnProperty('min_str_len')) {
+        if (String(value).length < setting.min_str_len)
+            return false;
     }
 
     return true;
@@ -159,14 +176,3 @@ function separate(Number)
         y = y.replace(rgx, '$1' + ',' + '$2');
     return y + z;
 }
-
-/**
- * Validate email
- * @param {string} email 
- */
-function validate_email(email)
-{
-    let mail_format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return email.match(mail_format);
-}
-
