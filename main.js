@@ -51,7 +51,7 @@ function diff_time(hour1, minutes1, hour2, minutes2)
 function validate_value(setting, value)
 {
     // setting = {
-    //     'is_numeric':'true',
+    //     'is_numeric':true,
     //     'max_num':10,
     //     'min_num':2,
     //     'isset':true
@@ -175,4 +175,64 @@ function separate(Number)
     while (rgx.test(y))
         y = y.replace(rgx, '$1' + ',' + '$2');
     return y + z;
+}
+
+/**
+ * Check Json format 
+ * @param {string} str 
+ * @returns bool > true/false
+ */
+function is_json(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Set Cookie
+ * @param {string} cname 
+ * @param {string} cvalue 
+ * @param {number} exdays 
+ */
+function set_cookie(cname, cvalue, exdays) {
+    let d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    let expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+/**
+ * Get cookie value by cookie name
+ * @param {string} cname 
+ * @returns {string}  cookie name
+ */
+function get_cookie(cname) {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+/**
+ * Check object in array
+ * @param {array} array
+ * @param object
+ */
+function in_array(array, object) {
+    if (array.indexOf(object) >= 0) {
+        return 1;
+    } else {
+        return 0;
+    }
 }
