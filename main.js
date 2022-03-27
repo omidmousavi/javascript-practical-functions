@@ -236,3 +236,16 @@ function in_array(array, object) {
         return 0;
     }
 }
+
+/**
+ * Sort array 
+ * @param {array} array 
+ * @param {string} sort_type DESC / ASC
+ */
+function sort_array(array, sort_type="DESC") {
+    if (sort_type.toLocaleUpperCase() == "DESC") {
+        return array.sort(function(a, b){return a - b});
+    } else if (sort_type.toLocaleUpperCase() == "ASC") {
+        return array.sort(function(a, b){return b - a});
+    }
+}
