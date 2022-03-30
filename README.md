@@ -1,1 +1,1 @@
-# All-my-js-public-functions
+# javascript-public-functions
