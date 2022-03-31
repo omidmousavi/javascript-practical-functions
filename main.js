@@ -249,3 +249,8 @@ function sort_array(array, sort_type="DESC") {
         return array.sort(function(a, b){return b - a});
     }
 }
+
+
+function copy_text(text) {
+    return navigator.clipboard.writeText(text);
+}
