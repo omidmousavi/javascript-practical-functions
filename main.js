@@ -250,7 +250,3 @@ function sort_array(array, sort_type="DESC") {
     }
 }
 
-
-function copy_text(text) {
-    return navigator.clipboard.writeText(text);
-}
