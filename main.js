@@ -160,20 +160,20 @@ function xss_filter(value)
 }
 
 /**
- * split number width ( , )
+ * split number width ( split_with_char = , )
  * @param {number} Number 
  * @returns string
  */
-function separate(Number) 
+function separate(Number, split_with_char = ",") 
 {
     Number+= '';
-    Number= Number.replace(',', '');
+    Number= Number.replace(split_with_char, '');
     x = Number.split('.');
     y = x[0];
     z = x.length > 1 ? '.' + x[1] : '';
     let rgx = /(\d+)(\d{3})/;
     while (rgx.test(y))
-        y = y.replace(rgx, '$1' + ',' + '$2');
+        y = y.replace(rgx, '$1' + split_with_char + '$2');
     return y + z;
 }
 
