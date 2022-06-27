@@ -225,6 +225,16 @@ function get_cookie(cname) {
 }
 
 /**
+* delete all cookies
+* run this func after confirm
+*/
+async function delete_all_cookies() {
+    document.cookie.split(";").forEach(function (c) {
+        document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+}
+
+/**
  * Check object in array
  * @param {array} array
  * @param object
