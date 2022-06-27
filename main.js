@@ -250,3 +250,8 @@ function sort_array(array, sort_type="DESC") {
     }
 }
 
+// block some characters in number boxs
+$("input[type=number]").on("keypress", function () {
+    return event.keyCode === 8 ? true : !isNaN(Number(event.key));
+});
+
