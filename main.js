@@ -44,7 +44,7 @@ function diff_time(hour1, minutes1, hour2, minutes2)
 
 /**
  * Validate input value
- * @param {dictionary} setting = is_numeric, max_num, min_num, isset, is_email, max_str_len, min_str_len
+ * @param {dictionary} setting = is_numeric, max_num, min_num, isset, is_email, max_str_len, min_str_len, str_len
  * @param {string|number} value 
  * @returns if value is ok return true else return false
  */
@@ -58,6 +58,7 @@ function validate_value(setting, value)
     //     'is_email':true
     //     'max_str_len':20
     //     'min_str_len':10     
+    //     'str_len':8
     // };
 
     if (setting.hasOwnProperty('is_numeric')) {
@@ -91,6 +92,10 @@ function validate_value(setting, value)
     }
     if (setting.hasOwnProperty('min_str_len')) {
         if (String(value).length < setting.min_str_len)
+            return false;
+    }
+    if (setting.hasOwnProperty('str_len')) {
+        if (String(value).length != setting.str_len)
             return false;
     }
 
@@ -261,7 +266,7 @@ function sort_array(array, sort_type="DESC") {
 }
 
 // block some characters in number boxs
-$("input[type=number]").on("keypress", function () {
-    return event.keyCode === 8 ? true : !isNaN(Number(event.key));
-});
+// $("input[type=number]").on("keypress", function () {
+//     return event.keyCode === 8 ? true : !isNaN(Number(event.key));
+// });
 
